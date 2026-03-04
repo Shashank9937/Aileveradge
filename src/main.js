@@ -1,209 +1,93 @@
 import './style.css';
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+import { createIcons, icons } from 'lucide';
 import Lenis from 'lenis';
+import { pages } from './pages';
 
-gsap.registerPlugin(ScrollTrigger);
+// Layout Structure
+const sidebarNavItems = [
+    { id: 'home', icon: 'layout-dashboard', label: 'Dashboard' },
+    { id: 'learningRoadmap', icon: 'map', label: 'Learning Roadmap' },
+    { id: 'agentLab', icon: 'flask-conical', label: 'Agent Lab' },
+    { id: 'agentIdeas', icon: 'list', label: '50 Agent Ideas' },
+    { id: 'startupEngine', icon: 'rocket', label: 'Startup Idea Engine' },
+    { id: 'unicornModels', icon: 'gem', label: 'Unicorn Models' },
+    { id: 'founderHabits', icon: 'activity', label: 'Founder Habits' },
+    { id: 'executionSystem', icon: 'calendar-check', label: 'Execution System' },
+    { id: 'weeklyReview', icon: 'rotate-cw', label: 'Weekly Review' },
+    { id: 'library', icon: 'book', label: 'Founder Library' },
+    { id: 'admin', icon: 'shield', label: 'Admin Panel', adminOnly: true }
+];
 
 document.addEventListener('DOMContentLoaded', () => {
-  // ==========================================
-  // 1. LENIS SMOOTH SCROLL (120FPS feel)
-  // ==========================================
-  const lenis = new Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Custom ease out
-    direction: 'vertical',
-    gestureDirection: 'vertical',
-    smooth: true,
-    mouseMultiplier: 1,
-    smoothTouch: false,
-    touchMultiplier: 2,
-    infinite: false,
-  });
+    const contentArea = document.getElementById('content-area');
+    const pageTitle = document.getElementById('page-title');
+    const sidebarNav = document.getElementById('sidebar-nav');
 
-  function raf(time) {
-    lenis.raf(time);
+    // Initialize smooth scrolling
+    const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        wrapper: document.getElementById('main-scroll'),
+        content: document.getElementById('main-scroll').firstElementChild,
+        infinite: false,
+        syncTouch: true
+    });
+
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
     requestAnimationFrame(raf);
-  }
-  requestAnimationFrame(raf);
 
-  // Sync GSAP ScrollTrigger with Lenis
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add((time) => {
-    lenis.raf(time * 1000);
-  });
-  gsap.ticker.lagSmoothing(0, 0);
+    let activePage = 'home';
 
-  // ==========================================
-  // 2. THEME TOGGLE
-  // ==========================================
-  const themeToggleGrp = document.getElementById('theme-toggle');
-  const htmlEl = document.documentElement;
-  const savedTheme = localStorage.getItem('founder-os-theme') || 'dark';
-  htmlEl.setAttribute('data-theme', savedTheme);
+    // Render Sidebar
+    function renderSidebar() {
+        sidebarNav.innerHTML = '';
 
-  themeToggleGrp.addEventListener('click', () => {
-    const currentTheme = htmlEl.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    htmlEl.setAttribute('data-theme', newTheme);
-    localStorage.setItem('founder-os-theme', newTheme);
-  });
+        // Grouping: you could optionally add group headers, but keeping it simple for Stripe/Vercel feel
+        sidebarNavItems.forEach(item => {
+            const btn = document.createElement('button');
+            btn.className = `saas-nav-item w-full text-left ${activePage === item.id ? 'active' : ''}`;
+            btn.innerHTML = `<i data-lucide="${item.icon}" class="w-4 h-4"></i> <span>${item.label}</span>`;
 
-  // ==========================================
-  // 3. GSAP SCROLL REVEALS
-  // ==========================================
-  const revealElements = document.querySelectorAll('.section-reveal');
+            btn.addEventListener('click', () => {
+                loadPage(item.id);
+                // Update active class
+                document.querySelectorAll('.saas-nav-item').forEach(el => el.classList.remove('active'));
+                btn.classList.add('active');
 
-  // Set initial state
-  gsap.set(revealElements, {
-    y: 40,
-    opacity: 0,
-    visibility: 'visible'
-  });
+                // Reset scroll
+                lenis.scrollTo(0, { immediate: true });
+            });
 
-  revealElements.forEach((el) => {
-    gsap.to(el, {
-      y: 0,
-      opacity: 1,
-      duration: 1.2,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 85%',
-        toggleActions: 'play none none reverse',
-      }
-    });
-  });
+            sidebarNav.appendChild(btn);
+        });
 
-  // ==========================================
-  // 4. MAGNETIC 3D HOVER (Institutional Polish)
-  // ==========================================
-  const interactiveCards = document.querySelectorAll('.interactive-card, .architect-card, .cta-card');
+        createIcons({ icons });
+    }
 
-  interactiveCards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left; // x position within the element.
-      const y = e.clientY - rect.top;  // y position within the element.
+    // Load Page Content
+    function loadPage(pageId) {
+        const pageData = pages[pageId];
+        if (!pageData) return;
 
-      // Pass coordinates to CSS custom properties for radial glow
-      card.style.setProperty('--mouse-x', `${x}px`);
-      card.style.setProperty('--mouse-y', `${y}px`);
+        activePage = pageId;
+        pageTitle.textContent = pageData.title;
 
-      // 3D Tilt calculation (subtle, ~5 degrees max)
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * -3;
-      const rotateY = ((x - centerX) / centerX) * 3;
+        // Animate out previous content (simple fade logic inside css keyframes)
+        contentArea.innerHTML = pageData.render();
 
-      gsap.to(card, {
-        rotationX: rotateX,
-        rotationY: rotateY,
-        duration: 0.5,
-        ease: 'power2.out',
-        transformPerspective: 1000,
-        transformOrigin: "center center"
-      });
-    });
+        // Re-initialize icons inside new content
+        createIcons({ icons });
 
-    card.addEventListener('mouseleave', () => {
-      gsap.to(card, {
-        rotationX: 0,
-        rotationY: 0,
-        duration: 0.8,
-        ease: 'elastic.out(1, 0.3)'
-      });
-    });
-  });
-
-  // ==========================================
-  // 5. CANVAS BACKGROUND (Subtle Node network)
-  // ==========================================
-  const canvas = document.getElementById('bg-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-
-  let width = canvas.width = window.innerWidth;
-  let height = canvas.height = window.innerHeight;
-
-  // Debounce resize
-  let resizeTimeout;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    }, 200);
-  });
-
-  const nodes = [];
-  const numNodes = width > 768 ? 50 : 25;
-
-  for (let i = 0; i < numNodes; i++) {
-    nodes.push({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: (Math.random() - 0.5) * 0.3,
-      radius: Math.random() * 1.5 + 0.5
-    });
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, width, height);
-
-    const isLightMode = htmlEl.getAttribute('data-theme') === 'light';
-    const nodeColor = isLightMode ? 'rgba(17, 24, 39, 0.3)' : 'rgba(237, 237, 237, 0.2)';
-    const lineColor = isLightMode ? 'rgba(17, 24, 39, ' : 'rgba(237, 237, 237, ';
-
-    for (let i = 0; i < numNodes; i++) {
-      let node = nodes[i];
-
-      node.x += node.vx;
-      node.y += node.vy;
-
-      if (node.x < 0 || node.x > width) node.vx *= -1;
-      if (node.y < 0 || node.y > height) node.vy *= -1;
-
-      ctx.beginPath();
-      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-      ctx.fillStyle = nodeColor;
-      ctx.fill();
-
-      for (let j = i + 1; j < numNodes; j++) {
-        let node2 = nodes[j];
-        let dx = node.x - node2.x;
-        let dy = node.y - node2.y;
-        let dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < 150) {
-          ctx.beginPath();
-          ctx.moveTo(node.x, node.y);
-          ctx.lineTo(node2.x, node2.y);
-          const opacity = 1 - (dist / 150);
-          ctx.strokeStyle = `${lineColor}${opacity * 0.15})`;
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
+        // Fire mount events if any (e.g. charts)
+        if (pageData.onMount) {
+            setTimeout(pageData.onMount, 50); // small delay to ensure DOM is ready
         }
-      }
     }
-    requestAnimationFrame(draw);
-  }
 
-  draw();
-
-  // Terminal Typing effect setup
-  const terminalLines = document.querySelectorAll('.terminal-body code span:not(.comment)');
-  gsap.from(terminalLines, {
-    opacity: 0,
-    y: 10,
-    stagger: 0.1,
-    duration: 0.5,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: '.terminal-mockup',
-      start: 'top 80%',
-    }
-  });
-
+    // Initial load
+    renderSidebar();
+    loadPage('home');
 });

@@ -1,490 +1,104 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- SEO Best Practices -->
-    <title>AI Leverage Architect | Founder OS & Systems Lab</title>
-    <meta name="description" content="Digital headquarters of an AI Leverage Architect. Building AI Systems That Multiply Human Capability through AI Founder OS, Agent Architecture, and Business Automation." />
-    
-    <!-- Fonts: Outfit for Heading, Inter for Body -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind via CDN is useful but vanilla CSS was requested (and we'll use strong custom CSS instead of pure Tailwind to ensure custom aesthetics). We will link our manual src/style.css -->
-  </head>
-  <body>
-    <!-- Background Animation Canvas -->
-    <canvas id="bg-canvas"></canvas>
+<html lang="en" class="dark">
 
-    <div class="nav-wrapper">
-      <nav class="main-nav">
-        <div class="logo">AI Leverage Architect</div>
-        <div class="nav-links">
-          <a href="#systems">Systems</a>
-          <a href="#lab">Lab</a>
-          <a href="#blueprint">Blueprint</a>
-          <a href="#journal">Journal</a>
-        </div>
-        <div class="nav-actions">
-          <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
-            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-            <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          </button>
-          <a href="#work-with-me" class="btn btn-primary btn-sm">Work With Me</a>
-        </div>
-      </nav>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Founder OS | System Dashboard</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<!-- Full layout screen with overflow hidden to allow internal scroll containers -->
+
+<body class="bg-black text-gray-200 antialiased h-screen w-full flex overflow-hidden selection:bg-blue-500/30">
+
+  <!-- Sidebar -->
+  <aside class="w-64 border-r border-[#222] bg-[#0A0A0A] flex flex-col shrink-0 h-full relative z-20 shadow-2xl">
+    <!-- Brand Logo Area -->
+    <div class="p-6 border-b border-[#222] flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center shrink-0">
+        <svg class="w-5 h-5 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+          <polyline points="2 17 12 22 22 17"></polyline>
+          <polyline points="2 12 12 17 22 12"></polyline>
+        </svg>
+      </div>
+      <div>
+        <h1 class="text-white font-outfit font-semibold text-base tracking-tight leading-tight">AI Founder OS</h1>
+        <p class="text-[0.65rem] text-gray-500 uppercase tracking-widest font-semibold mt-0.5">Build systems</p>
+      </div>
     </div>
 
-    <main class="smooth-scroll">
-      
-      <!-- 1. Hero Section -->
-      <section id="hero" class="hero-section section-reveal">
-        <div class="container hero-content">
-          <div class="badge">AI SYSTEMS ARCHITECT</div>
-          <h1 class="hero-title">Building AI Systems That <span class="gradient-text">Multiply Human Capability</span></h1>
-          <p class="hero-subtitle">
-            Designing, testing, deploying, and monetizing AI agents that create real business leverage.
-          </p>
-          <div class="cta-group">
-            <a href="#agent-architecture-lab" class="btn btn-primary">Explore AI Systems</a>
-            <a href="#learning-engine" class="btn btn-secondary">View My AI Roadmap</a>
-            <a href="#work-with-me" class="btn btn-outline">Work With Me</a>
-          </div>
-        </div>
-      </section>
+    <!-- Navigation List -->
+    <nav class="flex-1 overflow-y-auto p-4 space-y-1" id="sidebar-nav">
+      <!-- Rendered by JS -->
+    </nav>
 
-      <!-- 2. AI Founder OS -->
-      <section id="founder-os" class="section-reveal bg-alt">
-        <div class="container container-sm">
-          <div class="section-header">
-            <h2>AI Founder OS</h2>
-            <p>How I leverage multi-agent systems to augment my personal and professional life.</p>
-          </div>
-          
-          <div class="grid grid-2">
-            <div class="card interactive-card">
-              <div class="card-icon">🧠</div>
-              <h3>AI For Thinking</h3>
-              <ul class="feature-list">
-                <li>Decision support agents</li>
-                <li>Strategy simulation agents</li>
-                <li>Scenario planning</li>
-              </ul>
-            </div>
-            <div class="card interactive-card">
-              <div class="card-icon">📚</div>
-              <h3>AI For Learning</h3>
-              <ul class="feature-list">
-                <li>Knowledge extraction systems</li>
-                <li>Book summarization agents</li>
-                <li>Research pipelines</li>
-                <li>Memory database</li>
-              </ul>
-            </div>
-            <div class="card interactive-card">
-              <div class="card-icon">⚡</div>
-              <h3>AI For Focus</h3>
-              <ul class="feature-list">
-                <li>Daily prioritization AI</li>
-                <li>Execution tracking</li>
-                <li>Deep work assistant</li>
-              </ul>
-            </div>
-            <div class="card interactive-card">
-              <div class="card-icon">🧬</div>
-              <h3>AI For Health & Performance</h3>
-              <ul class="feature-list">
-                <li>Habit tracking AI</li>
-                <li>Performance dashboard</li>
-                <li>Bio data interpretation</li>
-              </ul>
-            </div>
-            <div class="card interactive-card span-2">
-              <div class="card-icon">💰</div>
-              <h3>AI For Wealth Building</h3>
-              <ul class="feature-list row-list">
-                <li>Investment research agents</li>
-                <li>Business model simulation</li>
-                <li>Opportunity scanning systems</li>
-              </ul>
-            </div>
-          </div>
+    <!-- User Profile Action -->
+    <div class="p-4 border-t border-[#222] bg-gradient-to-t from-black to-transparent">
+      <div
+        class="flex items-center gap-3 w-full p-2 rounded-lg hover:bg-[#111] transition-colors cursor-pointer border border-transparent hover:border-[#222] group">
+        <div
+          class="w-9 h-9 rounded-full bg-blue-600/20 border border-blue-500/30 text-blue-400 flex items-center justify-center font-bold font-outfit shadow-[0_0_10px_rgba(59,130,246,0.1)] group-hover:shadow-[0_0_15px_rgba(59,130,246,0.2)] transition-shadow">
+          F
         </div>
-      </section>
-
-      <!-- 3. My AI Learning Engine -->
-      <section id="learning-engine" class="section-reveal">
-        <div class="container">
-          <div class="section-header align-left">
-            <h2>My AI Learning Engine</h2>
-            <p>A structured curriculum for compounding knowledge.</p>
-          </div>
-          <div class="accordion-group" id="learning-accordion">
-            <details class="accordion-item" open>
-              <summary>Phase 1 – Prompt Mastery</summary>
-              <div class="accordion-content">Advanced framing, context injection, chain-of-thought protocols.</div>
-            </details>
-            <details class="accordion-item">
-              <summary>Phase 2 – Automation Systems</summary>
-              <div class="accordion-content">Workflow orchestration, zero-code pipelines, API integrations.</div>
-            </details>
-            <details class="accordion-item">
-              <summary>Phase 3 – Agent Architecture</summary>
-              <div class="accordion-content">Memory management, tool usage, distinct persona shaping.</div>
-            </details>
-            <details class="accordion-item">
-              <summary>Phase 4 – Multi-Agent Systems</summary>
-              <div class="accordion-content">Supervisor-worker topologies, consensus models, hierarchical task allocation.</div>
-            </details>
-            <details class="accordion-item">
-              <summary>Phase 5 – Security & Testing</summary>
-              <div class="accordion-content">Red teaming, prompt injection defense, sandboxed execution.</div>
-            </details>
-            <details class="accordion-item">
-              <summary>Phase 6 – Monetization Systems</summary>
-              <div class="accordion-content">Productizing agents, AaaS models, dynamic pricing logic.</div>
-            </details>
-            <details class="accordion-item">
-              <summary>Phase 7 – AI Business Transformation</summary>
-              <div class="accordion-content">Enterprise mapping, legacy system replacement, full-stack ROI enablement.</div>
-            </details>
-          </div>
+        <div class="text-sm flex-1 min-w-0">
+          <p class="font-medium text-white truncate">Founder</p>
+          <p class="text-[0.7rem] text-gray-500 uppercase tracking-wider">Admin</p>
         </div>
-      </section>
-
-      <!-- 4. AI Research Lab -->
-      <section id="lab" class="section-reveal bg-dark stripe-pattern">
-        <div class="container">
-          <div class="section-header">
-            <h2>AI Research Lab</h2>
-            <p>How I run rigorous, hypothesis-driven AI experiments.</p>
-          </div>
-          <div class="terminal-mockup">
-            <div class="terminal-header">
-              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-              <div class="terminal-title">lab-protocol.sh</div>
-            </div>
-            <div class="terminal-body" id="lab-code">
-<!-- expand via js later -->
-<pre><code><span class="comment"># Core Testing Framework</span>
-[ Hypothesis-driven builds ] -> Define predicted outcome
-[ What to test first ]       -> Highest risk assumptions
-[ Edge-case testing ]        -> Push context window limits
-[ Red team testing ]         -> Exploit prompt boundaries
-[ Failure analysis ]         -> Map where logic breaks
-[ Regression testing ]       -> Benchmark historic prompts
-[ Execution ]                -> Measure token & latency metrics
-<span class="comment">> System ready. Awaiting inputs.</span></code></pre>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 5. AI Capital Engine -->
-      <section id="capital-engine" class="section-reveal">
-        <div class="container container-md">
-          <div class="section-header align-left">
-            <h2>AI Capital Engine</h2>
-            <p>How AI systems compound wealth and leverage.</p>
-          </div>
-          <div class="compounding-loop-visual">
-            <div class="loop-node border-gradient">
-              <h4>Time Saved</h4>
-              <p>Reinvested into R&D</p>
-            </div>
-            <div class="loop-arrow">→</div>
-            <div class="loop-node border-gradient">
-              <h4>Processes Automated</h4>
-              <p>Margin Expansion</p>
-            </div>
-            <div class="loop-arrow">→</div>
-            <div class="loop-node border-gradient">
-              <h4>Systems Productized</h4>
-              <p>Recurring Revenue</p>
-            </div>
-            <div class="loop-arrow">→</div>
-            <div class="loop-node border-gradient">
-              <h4>Knowledge Captured</h4>
-              <p>Reusable Assets</p>
-            </div>
-            <div class="loop-arrow">→</div>
-            <div class="loop-node border-gradient">
-              <h4>Distribution Built</h4>
-              <p>Deal Flow Generation</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 6. AI Agent Architecture Lab -->
-      <section id="agent-architecture-lab" class="section-reveal bg-alt">
-        <div class="container">
-          <div class="section-header">
-            <h2>AI Agent Architecture Lab</h2>
-            <p>High-ROI systems categorized by complexity and function.</p>
-          </div>
-          
-          <div class="architect-grid">
-            <!-- Card 1 -->
-            <div class="architect-card">
-              <div class="card-tag">Sales</div>
-              <h4>Lead Enrichment Pipeline</h4>
-              <div class="card-data">
-                <p><strong>Input:</strong> Raw CRM Data / Emails</p>
-                <p><strong>Output:</strong> Scored, Enriched Lead Profile</p>
-                <p><strong>Tools:</strong> Web Scraper, LinkedIn API, OpenAI</p>
-                <p><strong>Failure Modes:</strong> Context Hallucination</p>
-                <p class="impact"><strong>ROI Potential:</strong> High (40hr/wk saved)</p>
-                <p><strong>Monetization:</strong> Value-based SaaS</p>
-              </div>
-            </div>
-            <!-- Card 2 -->
-            <div class="architect-card">
-              <div class="card-tag">Operations</div>
-              <h4>Supervisor-Worker System</h4>
-              <div class="card-data">
-                <p><strong>Input:</strong> Ambiguous Project Spec</p>
-                <p><strong>Output:</strong> Delegated Subtasks & Execution</p>
-                <p><strong>Tools:</strong> AutoGPT logic, Notion API</p>
-                <p><strong>Failure Modes:</strong> Infinite loops</p>
-                <p class="impact"><strong>ROI Potential:</strong> Very High</p>
-                <p><strong>Monetization:</strong> Internal Ops Agency</p>
-              </div>
-            </div>
-            <!-- Card 3 -->
-            <div class="architect-card">
-              <div class="card-tag">Content</div>
-              <h4>AI Content Engine</h4>
-              <div class="card-data">
-                <p><strong>Input:</strong> Voice Note / Brain dump</p>
-                <p><strong>Output:</strong> Newsletter, Tweet Thread, LinkedIn</p>
-                <p><strong>Tools:</strong> Whisper, GPT-4, Buffer</p>
-                <p><strong>Failure Modes:</strong> Generic tone</p>
-                <p class="impact"><strong>ROI Potential:</strong> Brand Authority</p>
-                <p><strong>Monetization:</strong> AaaS Retainer</p>
-              </div>
-            </div>
-            <!-- Card 4 -->
-            <div class="architect-card">
-              <div class="card-tag">Research</div>
-              <h4>Parallel Research System</h4>
-              <div class="card-data">
-                <p><strong>Input:</strong> Competitor Name</p>
-                <p><strong>Output:</strong> 40-page Deep Dive Dossier</p>
-                <p><strong>Tools:</strong> Perplexity API, Multi-Agent swarm</p>
-                <p><strong>Failure Modes:</strong> Data freshness</p>
-                <p class="impact"><strong>ROI Potential:</strong> Massive Strategy Leverage</p>
-                <p><strong>Monetization:</strong> High-ticket Consulting</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 7. AI Business Transformation Blueprint -->
-      <section id="blueprint" class="section-reveal">
-        <div class="container container-sm">
-          <div class="section-header align-left">
-            <h2>AI Business Transformation Blueprint</h2>
-            <p>From readiness audit to consultancy-grade execution.</p>
-          </div>
-          <div class="timeline-ui">
-            <div class="timeline-step">
-              <div class="step-marker">01</div>
-              <div class="step-content">
-                <h4>AI Readiness Audit</h4>
-                <p>Evaluating existing workflows, data silos, and calculating initial ROI logic.</p>
-              </div>
-            </div>
-            <div class="timeline-step">
-              <div class="step-marker">02</div>
-              <div class="step-content">
-                <h4>Core Automation Phases</h4>
-                <p>Mapping high-ROI systems, transitioning from pure human to human-in-the-loop design.</p>
-              </div>
-            </div>
-            <div class="timeline-step">
-              <div class="step-marker">03</div>
-              <div class="step-content">
-                <h4>High-ROI Systems Implementation</h4>
-                <p>Deploying specialized agents. Embedding an adoption framework for the team.</p>
-              </div>
-            </div>
-            <div class="timeline-step">
-              <div class="step-marker">04</div>
-              <div class="step-content">
-                <h4>Roadmap & Scale</h4>
-                <p>Iterative scaling, expanding context limits, and reducing cognitive overhead.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 8. AI Agency Blueprint -->
-      <section id="agency-blueprint" class="section-reveal bg-dark">
-        <div class="container">
-          <div class="section-header">
-            <h2>AI Agency Blueprint (Revenue Layer)</h2>
-            <p>Scalable models for monetizing AI architecture.</p>
-          </div>
-          
-          <div class="bento-box">
-            <div class="bento-item">
-              <h4>AI Automation Agency</h4>
-              <p>Target: SMBs. Pain: Manual data entry. System: Zapier/Make + LLMs. Pricing: $3k/mo retainer. Delivery: Done-for-you.</p>
-            </div>
-            <div class="bento-item">
-              <h4>AI Marketing Agent Studio</h4>
-              <p>Target: Creators/Brands. Pain: Content velocity. System: Custom GPT Swarms. Pricing: Setup fee + Usage. Scalability: High.</p>
-            </div>
-            <div class="bento-item">
-              <h4>AI Lead Gen Systems</h4>
-              <p>Target: B2B Sales. Pain: Empty pipelines. System: Automated enrichment & outreach. Pricing: Pay-per-qualified-lead.</p>
-            </div>
-            <div class="bento-item">
-              <h4>AI Internal Ops</h4>
-              <p>Target: Agencies/Consultancies. Pain: Shrinking margins. System: RFP & reporting agents. Delivery: Custom Build.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 9. AI Distribution & Reputation Engine -->
-      <section id="distribution" class="section-reveal bg-alt">
-        <div class="container container-md">
-          <div class="section-header align-left">
-            <h2>AI Distribution & Reputation Engine</h2>
-            <p>Creating a self-sustaining marketing and authority flywheel.</p>
-          </div>
-          <div class="flywheel-container">
-            <!-- Utilizing purely CSS/flex shapes to represent a flywheel approach -->
-            <div class="flywheel-orbit">
-              <div class="orbit-item">Content Engine</div>
-              <div class="orbit-item">Trend Monitoring</div>
-              <div class="orbit-item">Social Repurposing</div>
-              <div class="orbit-item">SEO Strategy</div>
-              <div class="orbit-item">Newsletter Automation</div>
-              <div class="orbit-center">Authority Building</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 10. AI Product Studio -->
-      <!-- 11. Security & Testing -->
-      <!-- 12. Tech Stack Architecture -->
-      <!-- 13. Monetization Strategy -->
-      <section id="systems" class="section-reveal">
-        <div class="container">
-          <div class="grid grid-3">
-            
-            <div class="sys-card interactive-card">
-              <h3>AI Product Studio</h3>
-              <p class="text-sm">Building Agent templates, SaaS micro-tools, AI dashboards, and Vertical AI agents.</p>
-            </div>
-            
-            <div class="sys-card interactive-card">
-              <h3>Security & Testing</h3>
-              <p class="text-sm">Implementing Prompt injection defenses, Red team protocol, Regression testing, and Error handling loops.</p>
-            </div>
-            
-            <div class="sys-card interactive-card">
-              <h3>Monetization Strategy</h3>
-              <p class="text-sm">Value-based pricing applying AaaS, White-label, Consulting, and Cohort teaching structures.</p>
-            </div>
-            
-          </div>
-          
-          <div class="stack-architecture mt-12">
-            <h3 class="mb-4">AI Tech Stack Architecture</h3>
-            <div class="layers">
-              <div class="layer layer-brain"><span>Brain Layer</span> (GPT-4, Claude 3.5, Llama)</div>
-              <div class="layer layer-workflow"><span>Workflow Layer</span> (LangChain, AutoGen, Zapier)</div>
-              <div class="layer layer-memory"><span>Memory Layer</span> (Pinecone, Chroma, Redis)</div>
-              <div class="layer layer-integration"><span>Integration Layer</span> (APIs, Webhooks, Custom Plugins)</div>
-              <div class="layer layer-observability"><span>Observability Layer</span> (LangSmith, Datadog)</div>
-              <div class="layer layer-security"><span>Security Layer</span> (Guardrails, RBAC)</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Strategic Additions & Journal -->
-      <section id="journal" class="section-reveal bg-dark">
-        <div class="container container-lg flex-split">
-          <div class="split-left">
-            <h2>Founder Journal</h2>
-            <p>Publicly documenting the engine builds.</p>
-            <ul class="journal-list">
-              <li>Agent build logs</li>
-              <li>Experiment results & Failures</li>
-              <li>Architecture breakdowns</li>
-              <li>Case studies</li>
-            </ul>
-          </div>
-          <div class="split-right">
-            <h2>Strategic Additions</h2>
-            <div class="tag-cloud">
-              <span class="tag">AI Second Brain</span>
-              <span class="tag">Daily Execution Engine</span>
-              <span class="tag">Personal KPI Dashboard</span>
-              <span class="tag">Opportunity Scanner</span>
-              <span class="tag">Networking Assistant</span>
-              <span class="tag">Idea Validation Engine</span>
-              <span class="tag">Financial Modeling Agent</span>
-              <span class="tag">AI Sustainability</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 15. Work With Me -->
-      <section id="work-with-me" class="section-reveal cta-section bg-gradient">
-        <div class="container text-center">
-          <h2 class="hero-title">Ready for AI Leverage?</h2>
-          <p class="hero-subtitle mb-8">Execute on systems, not just ideas.</p>
-          <div class="cta-cards">
-            <div class="cta-card">
-              <h4>Automation Audit</h4>
-              <p>Identify massive ROI leaks in your ops.</p>
-              <button class="btn btn-outline w-full mt-4">Book Audit</button>
-            </div>
-            <div class="cta-card featured">
-              <h4>AI Systems Build</h4>
-              <p>End-to-end bespoke multi-agent automation.</p>
-              <button class="btn btn-primary w-full mt-4">Initiate Build</button>
-            </div>
-            <div class="cta-card">
-              <h4>AI Strategy Advisory</h4>
-              <p>Retained architectural guidance for founders.</p>
-              <button class="btn btn-outline w-full mt-4">Apply Now</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </main>
-
-    <footer class="main-footer">
-      <div class="container flex-footer">
-        <div class="footer-brand">
-          <div class="logo">AI Leverage Architect</div>
-          <p class="text-sm">Building the future of AI-powered business.</p>
-        </div>
-        <div class="footer-links">
-          <span>AI Agents</span>
-          <span>Multi-Agent Systems</span>
-          <span>AI Agency</span>
-          <span>Founder OS</span>
-        </div>
+        <i data-lucide="chevrons-up-down" class="w-4 h-4 text-gray-600"></i>
       </div>
-    </footer>
+    </div>
+  </aside>
 
-    <script type="module" src="/src/main.js"></script>
-  </body>
+  <!-- Main Workspace -->
+  <main class="flex-1 flex flex-col min-w-0 bg-[#000] relative isolate">
+    <!-- Glow effect for depth -->
+    <div
+      class="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none -z-10">
+    </div>
+
+    <!-- Topbar Header -->
+    <header
+      class="h-16 border-b border-[#222] flex items-center px-8 justify-between shrink-0 sticky top-0 bg-black/80 backdrop-blur-xl z-10 transition-colors">
+      <div class="flex items-center gap-4">
+        <h2 class="text-base text-white/50 font-medium tracking-wide">AI Founder OS <span
+            class="mx-2 text-gray-700">/</span> <span id="page-title" class="text-white">Dashboard</span></h2>
+      </div>
+      <div class="flex gap-4 items-center">
+        <button
+          class="w-8 h-8 rounded-md flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#161616] border border-transparent hover:border-[#333] transition-all">
+          <i data-lucide="search" class="w-4 h-4"></i>
+        </button>
+        <button
+          class="w-8 h-8 rounded-md flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#161616] border border-transparent hover:border-[#333] transition-all relative">
+          <i data-lucide="bell" class="w-4 h-4"></i>
+          <span class="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-blue-500 rounded-full"></span>
+        </button>
+        <div class="w-px h-6 bg-[#222] mx-1"></div>
+        <button
+          class="bg-white text-black text-sm font-semibold font-outfit px-4 py-1.5 rounded-md hover:bg-gray-200 transition-colors shadow-lg shadow-white/10 flex items-center gap-2">
+          <i data-lucide="play" class="fill-black w-3 h-3"></i> Execute Run
+        </button>
+      </div>
+    </header>
+
+    <!-- Scrollable Content Area -->
+    <div class="flex-1 overflow-y-auto" id="main-scroll">
+      <div class="p-8 max-w-5xl mx-auto w-full pb-24" id="content-area">
+        <!-- Content injected by main.js -->
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
 </html>
