@@ -1,0 +1,151 @@
+:root {
+  --bg-primary: #f3f5f8;
+  --bg-secondary: #ffffff;
+  --ink-primary: #0f172a;
+  --ink-muted: #475569;
+  --accent: #14532d;
+  --accent-soft: #dcfce7;
+  --warn: #92400e;
+  --danger: #991b1b;
+  --stroke: #d7dde6;
+  --shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(circle at 90% 10%, #d6f4ff 0%, #f3f5f8 42%) no-repeat;
+  color: var(--ink-primary);
+}
+
+body {
+  font-family: "Avenir Next", "Trebuchet MS", "Segoe UI", sans-serif;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 20px 60px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.panel {
+  background: var(--bg-secondary);
+  border: 1px solid var(--stroke);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+
+.kpi {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.kpi-label {
+  color: var(--ink-muted);
+  font-size: 14px;
+}
+
+.hero {
+  margin-bottom: 20px;
+  padding: 24px;
+  border-radius: 20px;
+  border: 1px solid #b8c7d9;
+  background: linear-gradient(120deg, #0f172a 0%, #1d4ed8 45%, #14b8a6 100%);
+  color: #f8fafc;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 36px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-family: "Futura", "Franklin Gothic Medium", "Arial Narrow", sans-serif;
+}
+
+.hero p {
+  margin: 10px 0 0;
+  opacity: 0.95;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  text-align: left;
+  padding: 10px 0;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+.badge {
+  display: inline-block;
+  border-radius: 999px;
+  font-size: 12px;
+  padding: 3px 10px;
+  font-weight: 700;
+}
+
+.badge.low {
+  color: #166534;
+  background: #dcfce7;
+}
+
+.badge.medium {
+  color: #92400e;
+  background: #fef3c7;
+}
+
+.badge.high {
+  color: #991b1b;
+  background: #fee2e2;
+}
+
+@media (max-width: 900px) {
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .span-12,
+  .span-8,
+  .span-6,
+  .span-4 {
+    grid-column: span 12 !important;
+  }
+}
+
+.span-12 {
+  grid-column: span 12;
+}
+
+.span-8 {
+  grid-column: span 8;
+}
+
+.span-6 {
+  grid-column: span 6;
+}
+
+.span-4 {
+  grid-column: span 4;
+}

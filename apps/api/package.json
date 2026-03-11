@@ -1,0 +1,32 @@
+{
+  "name": "@ops-pilot/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx watch src/index.ts",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@fastify/cors": "11.0.1",
+    "@ops-pilot/auth": "workspace:*",
+    "@ops-pilot/config": "workspace:*",
+    "@ops-pilot/observability": "workspace:*",
+    "@ops-pilot/schemas": "workspace:*",
+    "bullmq": "5.41.5",
+    "fastify": "5.2.1",
+    "fastify-plugin": "5.0.1",
+    "pg": "8.13.3",
+    "zod": "3.24.2"
+  },
+  "devDependencies": {
+    "@types/pg": "8.11.11",
+    "tsx": "4.19.3",
+    "vitest": "3.0.7"
+  }
+}

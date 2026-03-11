@@ -1,0 +1,12 @@
+.git
+.github
+node_modules
+.pnpm-store
+.next
+.turbo
+coverage
+dist
+build
+.env
+.env.local
+.DS_Store

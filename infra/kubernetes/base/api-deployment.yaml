@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opspilot-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: opspilot-api
+  template:
+    metadata:
+      labels:
+        app: opspilot-api
+    spec:
+      containers:
+        - name: api
+          image: ghcr.io/opspilot/api:latest
+          ports:
+            - containerPort: 4000
+          envFrom:
+            - secretRef:
+                name: opspilot-secrets
+            - configMapRef:
+                name: opspilot-config
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 4000
+            initialDelaySeconds: 5
+            periodSeconds: 10

@@ -1,0 +1,6 @@
+api:
+  image: ghcr.io/opspilot/api:latest
+  replicas: 2
+web:
+  image: ghcr.io/opspilot/web:latest
+  replicas: 2

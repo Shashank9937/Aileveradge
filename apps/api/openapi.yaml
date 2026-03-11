@@ -1,0 +1,95 @@
+openapi: 3.1.0
+info:
+  title: OpsPilot API
+  version: 0.1.0
+servers:
+  - url: https://api.opspilot.com
+  - url: http://localhost:4000
+paths:
+  /health:
+    get:
+      summary: Health status
+      responses:
+        "200":
+          description: OK
+  /v1/connectors:
+    get:
+      summary: List connectors
+      responses:
+        "200":
+          description: Paginated connectors
+    post:
+      summary: Create connector
+      responses:
+        "201":
+          description: Connector created
+  /v1/opportunities:
+    get:
+      summary: List optimization opportunities
+      responses:
+        "200":
+          description: Paginated opportunities
+  /v1/actions:
+    get:
+      summary: List actions
+      responses:
+        "200":
+          description: Paginated actions
+    post:
+      summary: Create action
+      responses:
+        "201":
+          description: Action created
+  /v1/actions/{id}/approve:
+    post:
+      summary: Approve action
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Action approved
+  /v1/actions/{id}/execute:
+    post:
+      summary: Execute action
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "202":
+          description: Action queued
+  /v1/policies:
+    get:
+      summary: List policies
+      responses:
+        "200":
+          description: Paginated policies
+    post:
+      summary: Create policy
+      responses:
+        "201":
+          description: Policy created
+  /v1/policies/validate:
+    post:
+      summary: Validate policy candidate
+      responses:
+        "200":
+          description: Validation result
+  /v1/savings:
+    get:
+      summary: List savings ledger entries
+      responses:
+        "200":
+          description: Paginated savings
+  /v1/webhooks/cloud-events:
+    post:
+      summary: Ingest cloud event
+      responses:
+        "202":
+          description: Event accepted

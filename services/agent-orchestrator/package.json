@@ -1,0 +1,23 @@
+{
+  "name": "@ops-pilot/agent-orchestrator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx watch src/index.ts",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "echo 'no tests yet'"
+  },
+  "dependencies": {
+    "@ops-pilot/config": "workspace:*",
+    "@ops-pilot/observability": "workspace:*",
+    "@temporalio/client": "1.11.7",
+    "@temporalio/worker": "1.11.7",
+    "@temporalio/workflow": "1.11.7"
+  },
+  "devDependencies": {
+    "tsx": "4.19.3"
+  }
+}

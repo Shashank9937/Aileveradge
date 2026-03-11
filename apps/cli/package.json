@@ -1,0 +1,25 @@
+{
+  "name": "@ops-pilot/cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "opspilot": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/index.ts",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "echo 'no tests yet'"
+  },
+  "dependencies": {
+    "@ops-pilot/sdk": "workspace:*",
+    "commander": "13.1.0"
+  },
+  "devDependencies": {
+    "tsx": "4.19.3"
+  }
+}

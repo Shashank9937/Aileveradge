@@ -1,0 +1,33 @@
+{
+  "name": "ops-pilot",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@9.15.0",
+  "workspaces": [
+    "apps/*",
+    "services/*",
+    "agents/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "pnpm -r build",
+    "dev": "turbo run dev --parallel",
+    "dev:api": "pnpm --filter @ops-pilot/api dev",
+    "dev:web": "pnpm --filter @ops-pilot/web dev",
+    "dev:workers": "turbo run dev --parallel --filter=@ops-pilot/executor --filter=@ops-pilot/normalization --filter=@ops-pilot/agent-orchestrator",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test",
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md,yml,yaml}\"",
+    "typecheck": "pnpm -r typecheck",
+    "db:init": "bash scripts/smoke/db-init.sh"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "8.26.0",
+    "@typescript-eslint/parser": "8.26.0",
+    "@types/node": "22.13.8",
+    "eslint": "8.57.1",
+    "prettier": "3.5.3",
+    "turbo": "2.4.4",
+    "typescript": "5.8.2"
+  }
+}

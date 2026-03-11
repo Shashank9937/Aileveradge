@@ -1,0 +1,12 @@
+terraform {
+  required_version = ">= 1.6.0"
+}
+
+provider "aws" {
+  region = var.aws_region
+}
+
+module "platform" {
+  source       = "../../modules/platform"
+  cluster_name = "opspilot-prod"
+}

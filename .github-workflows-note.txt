@@ -1,0 +1,1 @@
+Copy deploy/github-actions/ci.yml to .github/workflows/ci.yml in your git hosting environment.
